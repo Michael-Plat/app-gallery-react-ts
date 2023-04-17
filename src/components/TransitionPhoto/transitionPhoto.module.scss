@@ -1,4 +1,4 @@
-.mainPhoto {
+.transitionPhoto {
   position: relative;
   width: 100%;
   padding-bottom: 50%;
@@ -10,22 +10,22 @@
     position: absolute;
     top: 0;
     left: 0;
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
 
-    &Prev,
-    &Next {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
+  &Image[data-active='true'] {
+    display: block;
+    opacity: 1;
+    z-index: 3;
+  }
+
+  &Image[data-active='prepared'] {
+    display: block;
   }
 }

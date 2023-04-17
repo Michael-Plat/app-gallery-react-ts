@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Photo } from './types';
-import { MainPhoto } from './MainPhoto';
+import { TransitionPhoto } from './TransitionPhoto';
 
 import style from './index.module.scss';
 import { PreviewGallery } from './PreviewGallery';
@@ -18,13 +18,12 @@ export const AppGalleryTS: React.FC<AppGalleryTSProps> = ({ photos }) => {
 
   const [indexActivePhoto, setIndexActivePhoto] = React.useState(0);
   const prevPhoto = photos[indexActivePhoto - 1];
-  const activePhoto = photos[indexActivePhoto];
   const nextPhoto = photos[indexActivePhoto + 1];
 
   return (
     <div className={style.appGallery}>
       <div className={style.appGalleryContainer}>
-        <MainPhoto prevPhoto={prevPhoto} activePhoto={activePhoto} nextPhoto={nextPhoto} />
+        <TransitionPhoto photos={photos} indexActivePhoto={indexActivePhoto} />
         <Navigation
           disablePrev={!prevPhoto}
           disableNext={!nextPhoto}
@@ -40,6 +39,7 @@ export const AppGalleryTS: React.FC<AppGalleryTSProps> = ({ photos }) => {
       <PreviewGallery
         activePhotoIndex={indexActivePhoto}
         photos={photos}
+        setNewPhoto={setIndexActivePhoto}
         className={style.appGalleryPreviewList}
       />
     </div>
